@@ -85,7 +85,8 @@ def adv_alpha_sort_by_word_length(words):
 
     return word_dictionary.items()
 
-adv_alpha_sort_by_word_length(["ok", "an", "apple", "a", "day"])
+# test for debugging:
+# adv_alpha_sort_by_word_length(["ok", "an", "apple", "a", "day"])
 ##############################################################################
 # You can ignore everything below this.
 
