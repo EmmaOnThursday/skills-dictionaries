@@ -28,22 +28,32 @@ def top_characters(input_string):
     Do not count spaces, but count all other characters.
 
     """
+    
+    # instantiate empty dictionary
     char_counts = {}
 
+    # for each characater, add char: count as k/v pair
+    # if character is already in dict as a key, +1 to its value
     for x in input_string:
         if char_counts.get(x, 0) == 0:
             char_counts[x] = 1
         else:
             char_counts[x] += 1    
+    
+    # zero out count for spaces
     char_counts[" "] = 0
 
-    pairs = sorted(char_counts.iteritems(), key = lambda x : x[1], reverse=True)
+    # create list of counts; return max value
+    just_counts = [x for x in char_counts.values()]
+    highest_count = max(just_counts)
 
-    counts = char_counts.values()
+    # for each k/v pair in dict, return key if value equals highest_count
+    most_common_letters = [x[0] for x in char_counts.iteritems() if x[1] == highest_count]
 
-    return pairs[0][0]
+    return sorted(most_common_letters)
 
-top_characters("the quick brown fox jumps over jjjj")
+# print statement with example string; for debugging
+# print top_characters("the quick brown fox jumps over jjjj")
 
 
 def adv_alpha_sort_by_word_length(words):
