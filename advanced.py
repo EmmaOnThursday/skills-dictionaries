@@ -28,12 +28,24 @@ def top_characters(input_string):
     Do not count spaces, but count all other characters.
 
     """
+    char_counts = {}
 
-    return []
+    for x in input_string:
+        if char_counts.get(x, 0) == 0:
+            char_counts[x] = 1
+        else:
+            char_counts[x] += 1    
+    char_counts[" "] = 0
+
+    pairs = sorted(char_counts.iteritems(), key = lambda x : x[1], reverse=True)
+
+    counts = char_counts.values()
+
+    return pairs[0][0]
+
+top_characters("the quick brown fox jumps over jjjj")
 
 
-# FIXME: fix the "now try doing it with only one call to sort() or sorted()"
-# Too hard.
 def adv_alpha_sort_by_word_length(words):
     """Return list of word-lengths and words.
 

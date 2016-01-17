@@ -132,8 +132,28 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
 
     """
+    normal = ['man', 'is', 'hello', 'my', 'restroom', 'the', 
+                'lawyer', 'are', 'students', 'excuse', 'your', 
+                'restaurant', 'professor', 'madam', 'boy', 'student', 
+                'hotel', 'sir']
+    pirate = ['matey', 'be', 'avast', 'me', 'head', 'th\'', 'foul blaggart', 
+                'be', 'swabbies', 'arr', 'yer', 'galley', 'foul blaggart', 
+                'proud beauty', 'matey', 'swabbie', 'fleabag inn', 'matey']
 
-    return ""
+    pirate_translator = dict(zip(normal, pirate))
+
+    phrase.strip()
+    phrase_list = phrase.split(" ")
+    
+    pirate_list = []
+
+    for word in phrase_list:
+        new_word = pirate_translator.get(word, word)
+        pirate_list.append(new_word)
+
+    pirate_phrase = " ".join(pirate_list)
+
+    return pirate_phrase
 
 
 def sort_by_word_length(words):
@@ -149,8 +169,17 @@ def sort_by_word_length(words):
         [(1, ['a']), (2, ['ok', 'an']), (3, ['day']), (5, ['apple'])]
 
     """
+
+    word_lengths = {}
+
+    for word in words:
+        chars = len(word)
+        if word_lengths.get(chars, 0) == 0:
+            word_lengths[chars] = [word]
+        else:
+            word_lengths[chars].append(word)
     
-    return []
+    return word_lengths.items()
 
 
 def get_sum_zero_pairs(input_list):
@@ -181,12 +210,23 @@ def get_sum_zero_pairs(input_list):
         [[-2, 2], [-1, 1], [0, 0]]
 
     """
+    
+    pairs = {}
 
-    return []
+    for num in input_list:
+        x = 0 - num
+        if x in input_list:
+            pair = [x,num]
+            pair.sort()
+            if pairs.get(abs(num),0) == 0:
+                pairs[abs(num)] = pair
+    
+    return pairs.values()
 
 
 ##############################################################################
 # You can ignore everything below this.
+
 
 def print_dict(d):
     # This method is just used to print dictionaries in key-alphabetical
