@@ -70,17 +70,39 @@ def adv_alpha_sort_by_word_length(words):
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
 
     """
+    # instantiate empty word dictionary; count each word
+    word_dictionary = {}
+    for x in words:
+        if word_dictionary.get(word, 0) == 0:
+            word_dictionary[word] = 1
+        else:
+            word_dictionary[word] += 1  
 
-    return []
+    new_dict = {}
+
+    # take each item: (word, #)
+    for pair in range(len(word_dictionary.iteritems())):
+        # if new_dict has # already: append word
+        # if not: make #, append word
+        if new_dict.get(pair[1], 0) == 0:
+            new_dict[pair[1]] = [pair[0]]
+        else:
+            new_dict[pair[1]].append(pair[0])
+
+    print new_dict
 
 
+
+    # return []
+
+adv_alpha_sort_by_word_length(["ok", "an", "apple", "a", "day"])
 ##############################################################################
 # You can ignore everything below this.
 
 
-if __name__ == "__main__":
-    print
-    import doctest
-    if doctest.testmod().failed == 0:
-        print "*** ALL TESTS PASSED ***"
-    print
+# if __name__ == "__main__":
+#     print
+#     import doctest
+#     if doctest.testmod().failed == 0:
+#         print "*** ALL TESTS PASSED ***"
+#     print
