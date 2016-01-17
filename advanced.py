@@ -72,37 +72,27 @@ def adv_alpha_sort_by_word_length(words):
     """
     # instantiate empty word dictionary; count each word
     word_dictionary = {}
-    for x in words:
-        if word_dictionary.get(word, 0) == 0:
-            word_dictionary[word] = 1
+
+    # checks if word length is already a key;
+    # if so, appends word; if not, creates key + starts value list with word
+    # sorts each value list
+    for word in words:
+        if word_dictionary.get(len(word), 0) == 0:
+            word_dictionary[len(word)] = [word]
         else:
-            word_dictionary[word] += 1  
+            word_dictionary[len(word)].append(word)
+        word_dictionary[len(word)].sort()
 
-    new_dict = {}
-
-    # take each item: (word, #)
-    for pair in range(len(word_dictionary.iteritems())):
-        # if new_dict has # already: append word
-        # if not: make #, append word
-        if new_dict.get(pair[1], 0) == 0:
-            new_dict[pair[1]] = [pair[0]]
-        else:
-            new_dict[pair[1]].append(pair[0])
-
-    print new_dict
-
-
-
-    # return []
+    return word_dictionary.items()
 
 adv_alpha_sort_by_word_length(["ok", "an", "apple", "a", "day"])
 ##############################################################################
 # You can ignore everything below this.
 
 
-# if __name__ == "__main__":
-#     print
-#     import doctest
-#     if doctest.testmod().failed == 0:
-#         print "*** ALL TESTS PASSED ***"
-#     print
+if __name__ == "__main__":
+    print
+    import doctest
+    if doctest.testmod().failed == 0:
+        print "*** ALL TESTS PASSED ***"
+    print
